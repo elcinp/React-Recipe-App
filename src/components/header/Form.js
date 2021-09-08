@@ -5,7 +5,7 @@ const Form = ({ setQuery, query, getData, mealTypes, setMeal, meal }) => {
     const handleSubmit = (e) => {
         e.preventDeafult();
         // console.log(handleSubmit);
-        console.log("query:",query );
+        console.log("query:",query ,meal);
         getData()
     }
     const handleChange = (e) => {

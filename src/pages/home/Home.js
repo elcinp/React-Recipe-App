@@ -1,6 +1,10 @@
 import React,{useState,useEffect} from 'react'
 import Header from '../../components/header/Header'
 import axios from 'axios'
+import { MainContainer } from './HomeStyle';
+import RecipeCardComp  from './RecipeCardComp';
+import homeSvg from '../../assets/home.svg';
+import { HomeImg, ImgDiv } from './HomeStyle';
 
 const mealTypes = ["Breakfast", "Lunch", "Dinner", "Snack", "Teatime"];
 const APP_ID = '1a9cbbd3';
@@ -32,15 +36,27 @@ const Home = () => {
 
     return (
         <div>
-            <Header/>
-            setQuery={setQuery} 
-            query={query}
-            getData={getData} 
-            mealTypes={mealTypes}  
-            setMeal={setMeal}  
-            meal={meal}
-        </div>
-    )
-}
+      <Header
+        setQuery={setQuery}
+        query={query}
+        getData={getData}
+        mealTypes={mealTypes}
+        setMeal={setMeal}
+        meal={meal}
+      />
+      {recipes ? (
+        <MainContainer>
+          {recipes?.map((recipe, index) => (
+            <RecipeCardComp key={index} recipe={recipe?.recipe} />
+          ))}
+        </MainContainer>
+      ) : (
+        <ImgDiv>
+          <HomeImg src={homeSvg} />
+        </ImgDiv>
+      )}
+    </div>
+  );
+};
 
 export default Home
